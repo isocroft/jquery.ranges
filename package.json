@@ -1,0 +1,22 @@
+{
+  "name":"jquery.ranges.js",
+  "version":"1.0.0",
+  "description":"a tiny yet tech script for including ",
+  "keywords":[
+     "Codedev Team",
+     "code labs",
+     "jquery.ranges"
+  ],
+  "devDependencies":[
+    "jQuery":"~1.9.1"
+  ],
+  "author":[
+    "name":"Ifeora Okechukwu",
+    "email":"isocroft@gmail.com"
+  ],
+  "repository":[
+    "type":"git",
+    "url":"https://github.com/isocroft/jquery.ranges.git"
+  ],
+  "main":"./jquery.ranges",
+}
