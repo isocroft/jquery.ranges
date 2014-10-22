@@ -1,22 +1,23 @@
 {
-  "name":"jquery.ranges.js",
+  "name":"jquery.ranges",
   "version":"1.0.0",
-  "description":"a tiny yet tech script for including ",
+  "description":"a tiny yet tech script for including slider UI widget on web sites/applications",
   "keywords":[
      "Codedev Team",
      "code labs",
      "jquery.ranges"
   ],
-  "devDependencies":[
+  "devDependencies":{
     "jQuery":"~1.9.1"
-  ],
+  },
   "author":[
     "name":"Ifeora Okechukwu",
     "email":"isocroft@gmail.com"
   ],
-  "repository":[
+  "repository":{
     "type":"git",
     "url":"https://github.com/isocroft/jquery.ranges.git"
-  ],
-  "main":"./jquery.ranges",
+  },
+  "homepage":"http://github.com/isocroft/jquery.ranges"
+  "main":"./jquery.ranges.js",
 }
