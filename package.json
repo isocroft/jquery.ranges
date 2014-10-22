@@ -1,6 +1,6 @@
 {
   "name":"jquery.ranges",
-  "version":"1.0.0",
+  "version":"0.0.1",
   "description":"a tiny yet tech script for including slider UI widget on web sites/applications",
   "keywords":[
      "Codedev Team",
@@ -18,6 +18,6 @@
     "type":"git",
     "url":"https://github.com/isocroft/jquery.ranges.git"
   },
-  "homepage":"http://github.com/isocroft/jquery.ranges"
+  "homepage":"http://github.com/isocroft/jquery.ranges",
   "main":"./jquery.ranges.js",
 }
