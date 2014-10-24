@@ -60,7 +60,7 @@
 						 inputClass:'text', // used to set the class for input textbox
                          stripClass:'strip' // used to set the class for the strip that grows along with the pin
 					},			
-	     $opts = $.extend(__defaults, options),
+	     $opts = $.extend({},__defaults, options),
 		 diff = $opts.max - $opts.min,  /* difference in limits (lower bound and upper bound) */
 		 options = (($opts.vals >= $opts.min && $opts.max >= $opts.vals) && (diff % $opts.step == 0) && $opts) || null,
 		 
