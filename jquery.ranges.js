@@ -7,10 +7,10 @@
  *                                                                        *
  * File: jquery.ranges.js                                                 *
  * Author(s): Ifeora Okechukwu (@isocroft - member Codedev Team)          *
- * Version: 0.1.0                                                         *
+ * Version: 0.0.1                                                         *
  * Date Created: 04/03/2013                                               *
  * Date Last Modified: 04/04/2014                                         *
- * Date Released: 00/00/0000                                              *
+ * Date Released: 27/10/2014                                              *
  *                                                                        *
  * Redistribution and use in source and binary forms, with or without     *
  * modification, are permitted under open source licensing terms          *
