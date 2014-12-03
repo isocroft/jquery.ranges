@@ -7,7 +7,7 @@
  *                                                                        *
  * File: jquery.ranges.js                                                 *
  * Author(s): Ifeora Okechukwu (@isocroft - member Codedev Team)          *
- * Version: 0.1                                                           *
+ * Version: 0.0.2                                                         *
  * Date Created: 04/03/2013                                               *
  * Date Last Modified: 04/04/2014                                         *
  * Date Released: 00/00/0000                                              *
@@ -24,9 +24,21 @@
  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES               *
  **************************************************************************/
 
- 
+ ;(function(factory){
 
-;(function($,w,undefined){
+     /* UMD (Universal Module Definition) */
+	 
+     if(typeof define == "function" && "amd" in define){
+	      define(['jquery'], factory);
+	 }
+	 if(module && typeof module.exports == "object"){
+	     factory(require('jquery'));
+	 }
+	 if(this.window === this && this.jQuery){
+	     factory(this.jQuery);
+	 }
+	 
+}(function($,undefined){
 
   'use strict';
   
@@ -169,6 +181,6 @@
        });
 	   
 	}
-	
-}(jQuery, this));
+
+}));
 
