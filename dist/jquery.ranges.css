@@ -1,0 +1,115 @@
+/**************************************************************************
+ * Copyright © 2014 @cdv code labs All Rights Reserved.                   *
+ *                                                                        *
+ * @APIurl http://cproscodedev.com.ng/projects/js/ranges                  *
+ * @licence:  MIT                                                         *
+ * @package jQuery Plugin CSS helper                                      *
+ *                                                                        *
+ * File: jquery.ranges.css                                                *
+ * Author(s): Ifeora Okechukwu (@isocroft - member Codedev Team)          *
+ * Version: 0.0.2                                                         *
+ * Date Created: 04/03/2013                                               *
+ * Date Last Modified: 04/04/2014                                         *
+ * Date Released: 00/00/0000                                              *
+ *                                                                        *
+ * Redistribution and use in source and binary forms, with or without     *
+ * modification, are permitted under open source licensing terms          *
+ *                                                                        *
+ *                                                                        *
+ * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND AUTHORS ON AN   *
+ * "AS IS" BASIS HENCE ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING,      *
+ * BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND      * 
+ * FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE *
+ * COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,    *
+ * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES               *
+ **************************************************************************/
+ 
+ /* Also includes cure 4 IE wahala using star hack to trigger hasLayout */
+
+div.ranges-widget{
+  width:230px;
+  height:30px;
+  margin:0px;
+  padding:0px;
+  border:1px solid #32aeee;  
+  display:-moz-inline-stack;
+  display:inline-block;
+  vertical-align:bottom;
+  *display:inline; 
+  *zoom:1;
+}
+
+span.arrow-ranges{
+  border-style: dashed;
+  border-color: transparent;
+  display:block;
+  font-size: 100px;
+  height: 0;
+  line-height: 0;
+  width:0;
+  padding:0px;
+  position:absolute;
+}
+
+span.arrow-ranges-n{
+  bottom: 0.28em;
+}
+
+div.ranges-wrapper{ 
+  width:400px;
+  height:32px;
+  margin:0px;
+  padding:0px;
+  border:1px solid #eeeeee;
+}
+
+div.ranges-strip{
+background-color:#858585;
+}
+
+
+div.ranges-input-box{
+display:-moz-inline-stack;
+display:inline-block;
+vertical-align:bottom;
+*display:inline;
+*zoom:1;
+width:150px;
+height:30px;
+padding:0px;
+margin:0px 0px 0px 10px;
+}
+
+span.ranges-input-tag{
+display:-moz-inline-stack;
+display:inline-block;
+vertical-align:top;
+*display:inline;
+*zoom:1;
+width:30px;
+height:30px;
+margin:0px;
+padding:0px;
+border:none;
+}
+
+input.ranges-input-text{
+display:-moz-inline-stack;
+display:inline-block;
+vertical-align:top;
+*display:inline;
+*zoom:1;
+font-size:100%;
+width:120px;
+height:30px;
+margin:0px;
+padding:0px;
+border:none;
+text-indent:10px;
+}
+
+.ranges-pin{
+background-color:#f5f5f5;
+}
+
+/* Define your overriding styles here */
