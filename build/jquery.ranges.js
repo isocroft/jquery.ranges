@@ -1,16 +1,16 @@
 /**************************************************************************
- * Copyright © 2013 @cdv code-labs All Rights Reserved.                   *
+ * Copyright © 2013 @cdv code labs All Rights Reserved.                   *
  *                                                                        *
- * @APIurl:  http://cproscodedev.com.ng/projects/js/ranges/docs           *
- * @licence: MIT                                                          *
- * @package: jQuery Plugin                                                *
+ * @APIurl http://cproscodedev.com.ng/projects/js/ranges                  *
+ * @licence:  MIT                                                         *
+ * @package jQuery Plugin                                                 *
  *                                                                        *
  * File: jquery.ranges.js                                                 *
  * Author(s): Ifeora Okechukwu (@isocroft - member Codedev Team)          *
- * Version: 0.0.1                                                         *
+ * Version: 0.0.2                                                         *
  * Date Created: 04/03/2013                                               *
  * Date Last Modified: 04/04/2014                                         *
- * Date Released: 27/10/2014                                              *
+ * Date Released: 00/00/0000                                              *
  *                                                                        *
  * Redistribution and use in source and binary forms, with or without     *
  * modification, are permitted under open source licensing terms          *
@@ -24,63 +24,70 @@
  * INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES               *
  **************************************************************************/
 
-;(function($,w,undefined){
+ ;(function(factory){
+
+     /* UMD (Universal Module Definition) */
+	 
+     if(typeof define == "function" && "amd" in define){
+	      define(['jquery'], factory);
+	 }
+	 if(module && typeof module.exports == "object"){
+	     factory(require('jquery'));
+	 }
+	 if(this.window === this && this.jQuery){
+	     factory(this.jQuery);
+	 }
+	 
+}(function($,undefined){
 
   'use strict';
   
   $.fn.ranges = function(options){
-  
-      if(!options || !$.isPlainObject(options)){
-           options = {} // in case the user passes nothing-ness as argument!
-	  }	
+   
+      
+    if($.rangeSet !== undefined){
+	       return;
+	  }
+
+    if(!$.isPlainObject(options)){
+        options = {};
+        $.rangeSet = false;
+		} 
+		 
+	   
 	 
-	  var __defaults = {
-	                     step:1, // shifting factor 
-                   	     max:100, // maximum value
-						 min:0, // minimum value
-						 vals:0, // current value
-						 scale:10, // scaling factor
-						 onceRun:true, // flag to run once
+	   var __defaults = {
+	           step:1,
+             max:100, 
+						 min:0, 
+						 vals:0,
+						 scale:10,
 						 roundValues:true, // used to make fractional output or whole output on the input textbox
 						 allowArrow:true, // used to make the arrow visible or not
 						 inputEditable:false, // set if the input will be editable
 						 pinClass:'pin', // set the pin class
 						 boxClass:'box', // set the wrapper of the (input-tag) and (input-text)
-					     inputTagClass:'tag', // used to style the span just in front of the input
+					   inputTagClass:'tag', // used to style the span just in front of the input
 						 arrowSize:8,  // used to set the size of the arrow
 						 inputClass:'text', // used to set the class for input textbox
                          stripClass:'strip' // used to set the class for the strip that grows along with the pin
-		},			
-	     $opts = $.extend(__defaults, options), /* merge options */
-		 
+					},			
+	     $opts = $.extend(__defaults, options),
 		 diff = $opts.max - $opts.min,  /* difference in limits (lower bound and upper bound) */
-		 
-		 shift = diff / $opts.step,
-		 
-		 options = (($opts.vals >= $opts.min && $opts.max >= $opts.vals) && (diff % $opts.step == 0) && $opts) || null, 
+		 options = (($opts.vals >= $opts.min && $opts.max >= $opts.vals) && (diff % $opts.step == 0) && $opts) || null,
 		 
 		 $opts = null;
 		 
-		 // use this as an flag options point to initialise "ranges" only once!  
-         if($.rangeObj !== undefined){
-	        if(options.onceRun){
-		        return;
-		    }
-	     }
-		 
-		 // take care of step functionality 
-		 if(options.step <= 0 || options.step >= 13)
-      		 $.error("Range-Error: illegal argument encountered, cannot iniliatize");
-	
-	     $.rangeObj = true; // set as initialised!!
-		 
+		 $.rangeSet = true;	 // cache the fact that we have indeed initialised    	 	   
+		   
+   
          return $(this).each(function(index){
 	   
              var $frag = document.createDocumentFragment(),
 			     value = options.vals, /* value point */
 		         ratio = value/diff * 100, /* percentage ratio value */
 			     drag_active = false, /* are we draging? well, for now NO! */
-		         x = 0, /* a reference to the "pin" DOM object */
+		         x = 0, /* reference to the pin */
                  $view = $('<div>').attr("class",'ranges-input-'+options.boxClass),			 
 				 $widget = $(this).attr('role','application').css({position:"relative"}),
 				 $wrapper_id = "aria-ranges-"+($widget[0].id || "widget"),
@@ -103,12 +110,13 @@
 				 maxLeft = (minLeft + wid),
 				 setObjPoints = function($jq1, $jq2, offset){    
 					 left = ((offset) <= minLeft)? minLeft : ((offset >= maxLeft) ? maxLeft : offset); /* include step functionality here later */
-					 value = ((left + pinHalfEffectiveWidth) / (wid) ) * diff;
+					 value = ((left + pinHalfEffectiveWidth) / wid) * diff;
 					 $slidr.attr('aria-value', value); 
 					 ratio = (value/diff) * 100;
 		             $jq1.css('left', left+"px");
 					 $jq2.css('width',(left+pinHalfEffectiveWidth)+"px");
 					 $('input.ranges-input-'+options.inputClass).val((options.roundValues)? Math.round(options.scale * value) : options.scale * value);
+					 
 		         };
 				 
 				 
@@ -128,27 +136,26 @@
 				 }
 
 				 $slidr.attr("class",'ranges-'+options.stripClass);
-                 $slidr.attr("role","slider");         
+         $slidr.attr("role","slider");         
 				 $slidr.attr('aria-value', options.vals);
 				
 				 $frag.appendChild($slidr[0]);
 				 $frag.appendChild($pin[0]); 
-                 $widget[0].appendChild($frag);
+        $widget[0].appendChild($frag);
 				 
 				 $widget.wrap($wrapper);
 				 $('.ranges-wrapper').append($view);
 				 
 		
 				 
-				 $pin.on('mousedown', function(e){	
-				       
+				 $pin.on('mousedown', function(e) {	
                        var t = e.clientX,
 					   handler = function(e){
-            	                setObjPoints($pin, $slidr, (e.originalEvent.clientX-(pinHalfEffectiveWidth))); 									 
+            	                setObjPoints($pin, $slidr, (e.clientX-pinHalfEffectiveWidth)); 									 
             	       };				   
-	                   if(!drag_active) drag_active = !drag_active;
-                       x = this;
-					   left = parseInt($(x).css('left'));
+	                   if(!drag_active) drag_active = true;
+               x = this;
+					     left = parseInt($(x).css('left'));
 				       x.ondragstart = function(){ return false;  }; // inhibit (Firefox, IE) drag 'n drop wahala!!!
 				       if(drag_active){
 				             if($.throttle){ // if Ben Alman's --throttle & debounce-- is available to jQuery, then use it
@@ -157,23 +164,23 @@
 					               $(document).bind('mousemove.rangespl', function(ev){  handler(ev); }); // namespace the event to avoid conflict with other plugins
 					         }
 					    }
-                    return false;  			
+                       			
 				});
-				
 				
 				
 				$(document).on('mouseup', function(e){
 				    
 				     if(drag_active)
-					     drag_active = !drag_active; 
+					     drag_active = false; 
 						 
 					if(!drag_active){
 					    $(document).unbind("mousemove.rangespl");       
-					}else{ return false; }
+					}
 					
 				});
        });
 	   
 	}
-	
-}(jQuery, this));
+
+}));
+
