@@ -6,10 +6,10 @@
  * @package jQuery Plugin                                                 *
  *                                                                        *
  * File: jquery.ranges.js                                                 *
- * Author(s): Ifeora Okechukwu (@isocroft - member Codedev Team)          *
- * Version: 0.0.2                                                         *
+ * Author(s): Ifeora Okechukwu (@isocroft - http://twitter.com/isocroft)  *
+ * Version: 0.0.4                                                         *
  * Date Created: 04/03/2013                                               *
- * Date Last Modified: 04/04/2014                                         *
+ * Date Last Modified: 14/11/2015                                         *
  * Date Released: 00/00/0000                                              *
  *                                                                        *
  * Redistribution and use in source and binary forms, with or without     *
@@ -57,8 +57,8 @@
 	   
 	 
 	   var __defaults = {
-	           step:1,
-             max:100, 
+	                     step:1,
+                         max:100, 
 						 min:0, 
 						 vals:0,
 						 scale:10,
@@ -67,14 +67,19 @@
 						 inputEditable:false, // set if the input will be editable
 						 pinClass:'pin', // set the pin class
 						 boxClass:'box', // set the wrapper of the (input-tag) and (input-text)
-					   inputTagClass:'tag', // used to style the span just in front of the input
+					     inputTagClass:'tag', // used to style the span just in front of the input
 						 arrowSize:8,  // used to set the size of the arrow
 						 inputClass:'text', // used to set the class for input textbox
-                         stripClass:'strip' // used to set the class for the strip that grows along with the pin
+                         stripClass:'strip', // used to set the class for the strip that grows along with the pin
+						 pinEvents:{
+						     pinDragStart:function(){},
+							 pinDragOn:function(){},
+							 pinDragStop:function(){}
+						 }
 					},			
-	     $opts = $.extend(__defaults, options),
-		 diff = $opts.max - $opts.min,  /* difference in limits (lower bound and upper bound) */
-		 options = (($opts.vals >= $opts.min && $opts.max >= $opts.vals) && (diff % $opts.step == 0) && $opts) || null,
+	                $opts = $.extend(__defaults, options, true),
+		            diff = $opts.max - $opts.min,  /* difference in limits (lower bound and upper bound) */
+		            options = (($opts.vals >= $opts.min && $opts.max >= $opts.vals) && (diff % $opts.step == 0) && $opts) || null,
 		 
 		 $opts = null;
 		 
@@ -136,21 +141,22 @@
 				 }
 
 				 $slidr.attr("class",'ranges-'+options.stripClass);
-         $slidr.attr("role","slider");         
+                 $slidr.attr("role","slider");         
 				 $slidr.attr('aria-value', options.vals);
 				
 				 $frag.appendChild($slidr[0]);
 				 $frag.appendChild($pin[0]); 
-        $widget[0].appendChild($frag);
+                 $widget[0].appendChild($frag);
 				 
 				 $widget.wrap($wrapper);
 				 $('.ranges-wrapper').append($view);
 				 
 		
 				 
-				 $pin.on('mousedown', function(e) {	
-                       var t = e.clientX,
+				 $pin.on('mousedown', function(e){	
+				       var t = e.clientX,
 					   handler = function(e){
+					            $(document).trigger('pindragon');
             	                setObjPoints($pin, $slidr, (e.clientX-pinHalfEffectiveWidth)); 									 
             	       };				   
 	                   if(!drag_active) drag_active = true;
@@ -158,20 +164,27 @@
 					     left = parseInt($(x).css('left'));
 				       x.ondragstart = function(){ return false;  }; // inhibit (Firefox, IE) drag 'n drop wahala!!!
 				       if(drag_active){
-				             if($.throttle){ // if Ben Alman's --throttle & debounce-- is available to jQuery, then use it
+					          $(document).trigger('pindragstart');
+				              if($.throttle){ // if Ben Alman's --throttle & debounce-- is available to jQuery, then use it
                                    $(document).bind('mousemove.rangespl', $.throttle(10, true, handler)); 
-					         }else{
+					          }else{
 					               $(document).bind('mousemove.rangespl', function(ev){  handler(ev); }); // namespace the event to avoid conflict with other plugins
-					         }
+					          }
 					    }
                        			
 				});
 				
 				
-				$(document).on('mouseup', function(e){
+				$(document)
+				.on('pindragstart', options.pinEvents.pinDragStart)
+				.on('pindragon', options.pinEvents.pinDragOn)
+				.on('pindragstop', options.pinEvents.pinDragStop)
+				.on('mouseup', function(e){
 				    
-				     if(drag_active)
-					     drag_active = false; 
+				     if(drag_active){
+					     drag_active = false;
+						 $(this).trigger('pindragstop');
+                     }						 
 						 
 					if(!drag_active){
 					    $(document).unbind("mousemove.rangespl");       
