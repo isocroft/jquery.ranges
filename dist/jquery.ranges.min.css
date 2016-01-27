@@ -1,1 +1,85 @@
-﻿div.ranges-widget{width:230px;height:30px;margin:0;padding:0;border:1px solid #32aeee;display:-moz-inline-stack;display:inline-block;vertical-align:bottom;*display:inline;*zoom:1}span.arrow-ranges{border-style:dashed;border-color:transparent;display:block;font-size:100px;height:0;line-height:0;width:0;padding:0;position:absolute}span.arrow-ranges-n{bottom:.28em}div.ranges-wrapper{width:400px;height:32px;margin:0;padding:0;border:1px solid #eee}div.ranges-strip{background-color:#858585}div.ranges-input-box{display:-moz-inline-stack;display:inline-block;vertical-align:bottom;*display:inline;*zoom:1;width:150px;height:30px;padding:0;margin:0 0 0 10px}span.ranges-input-tag{display:-moz-inline-stack;display:inline-block;vertical-align:top;*display:inline;*zoom:1;width:30px;height:30px;margin:0;padding:0;border:none}input.ranges-input-text{display:-moz-inline-stack;display:inline-block;vertical-align:top;*display:inline;*zoom:1;font-size:100%;width:120px;height:30px;margin:0;padding:0;border:none;text-indent:10px}.ranges-pin{background-color:#f5f5f5}
+﻿div.ranges-widget
+{
+    width: 230px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #32aeee;
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: bottom;
+    *display: inline;
+    *zoom: 1
+}
+span.arrow-ranges
+{
+    border-style: dashed;
+    border-color: transparent;
+    display: block;
+    font-size: 100px;
+    height: 0;
+    line-height: 0;
+    width: 0;
+    padding: 0;
+    position: absolute
+}
+span.arrow-ranges-n
+{
+    bottom: .28em
+}
+div.ranges-wrapper
+{
+    width: 400px;
+    height: 32px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #eee
+}
+div.ranges-strip
+{
+    background-color: #858585
+}
+div.ranges-input-box
+{
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: bottom;
+    *display: inline;
+    *zoom: 1;
+    width: 150px;
+    height: 30px;
+    padding: 0;
+    margin: 0 0 0 10px
+}
+span.ranges-input-tag
+{
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+    width: 30px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border: none
+}
+input.ranges-input-text
+{
+    display: -moz-inline-stack;
+    display: inline-block;
+    vertical-align: top;
+    *display: inline;
+    *zoom: 1;
+    font-size: 100%;
+    width: 120px;
+    height: 30px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    text-indent: 10px
+}
+.ranges-pin
+{
+    background-color: #f5f5f5
+}
