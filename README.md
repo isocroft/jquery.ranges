@@ -1,5 +1,5 @@
- jquery.ranges
- ==============
+# jquery.ranges
+
 
 This is a tiny jquery library that adds functionality for slider <tt>UI</tt> widget on your current/next web site/app
 
@@ -22,9 +22,8 @@ Setting up `jquery.ranges` in your projects is really very easy with just 3 step
 * Then, install the plugin script 
 * Finally, use it and reuse it! 
 
-<pre class="language-javascript">
- <code>
-  <!DOCTYPE html>
+```
+<!DOCTYPE html>
     <html lang="en" dir="ltr">
         <head>
           <meta charset="utf-8" />
@@ -56,18 +55,15 @@ Setting up `jquery.ranges` in your projects is really very easy with just 3 step
 	         });
 			
 		 </script>
-		 .
-		 .
-		 .
+		 
         </head>
 	    <body>
 		    <div id="ranges-widget">
 			
 			</div>
 		</body>
-	</html>	
-  </code>
-</pre>
+</html>	
+```
   
 ## Documentation 
 
